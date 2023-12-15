@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Uj kupon</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <title>Document</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary secondary">
+    <div class="container-fluid secondary">
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/ujkupon">Uj kupon</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <form method="post">
+    <div class="container">
+      <div class="row">
+        <div class="col-4">
+          
+        </div>
+        <div class="col-4">
+          <label>
+            <p>Előadás neve:</p>
+            <input class="form-control" type="text"> <br>
+          </label>
+          <p>Hány százalékos kupon:</p>
+          <label>
+            <input class="form-control" type="text"> <br>
+          </label>
+         <p> A kupon kódja:</p>
+          <label>
+            <input class="form-control" type="text"> <br>
+          </label>
+          <p></p>
+          <input type="submit" value="Hozzáadás" class="btn btn-primary">
+          <a href="/" class="btn btn-primary">Vissza</a> <br>
+          <p class="text-danger p-3" >
+          <% if (errors) { %>
+            <% errors.forEach((msg) => { %>
+              <p class="errorMessage"><%= msg %></p>
+              <% });
+          } %>
+          </p>
+        </div>
+        <div class="col-4">
+          
+        </div>
+        
+    </div>
+  </form>
+</body>
+</html>
