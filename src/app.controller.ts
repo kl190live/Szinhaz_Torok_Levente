@@ -16,7 +16,13 @@ export class AppController {
 
   @Get()
   @Render('index')
-  index() {
-    return { message: 'Welcome to the homepage' };
+  async index() {
+    
+    const [adatok] = await conn.execute('SELECT  id, title, percentage, code FROM kuponok ORDER BY title');
+    console.log(adatok);
+    
+    return {
+      kuponok:adatok 
+    };
   }
 }
