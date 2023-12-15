@@ -39,20 +39,20 @@ export class AppController {
   async ujKupon(@Body() ujKupon: KuponDto, @Res() res:Response) {
     const errors: string[] = [];
     const kuponCode=/[a-zA-Z]{4}-[0-9]{6}/;
-    if(ujKupon.title == null){
-      errors.push('Az előadás címét meg kell adni');
+    if(ujKupon.title == ''){
+      errors.push('A elődást megadni kötelező')
     }
-    if( 1<ujKupon.percentage || ujKupon.percentage<100){
-      errors.push('A kedvezmény csak 1-99 között lehet megadni');
+    if(ujKupon.percentage.toString() == ''){
+      errors.push('Kedvezmény megadása kötelező')
     }
-    if(ujKupon.percentage == null){
-      errors.push('A kedvezményt meg kell adni');
+    if(ujKupon.percentage > 1 || ujKupon.percentage < 100) {
+        errors.push('A kedvezmény csak 1-99-ig lehet megadni!')
     }
-    if(ujKupon.code == null){
-      errors.push('A kupon kódját meg kell andi');
+    if(ujKupon.code == ''){
+      errors.push('Kuponkód megadása kötelező')
     }
     if(!kuponCode.test(ujKupon.code)){
-      errors.push('A kupon 11 karakterből kell álnia és a példa szerint kell kinéznie pl: DFRW-764332');
+      errors.push('Hibás a kuponkód! Próbálja meg a példa szerint megirni Példa: ABCD-123456')
     }
     
     const title = ujKupon.title;
@@ -66,7 +66,11 @@ export class AppController {
       };
     }
     else{
-      const [ adatok ] = await conn.execute('INSERT INTO kuponok (title, percentage, code) VALUES (?, ?, ?)',[title, percentage, code],);
+      const [ adatok ] = await conn.execute
+      (
+        'INSERT INTO kuponok (title, percentage, code) VALUES (?, ?, ?)',
+        [title, percentage, code]
+      );
       console.log(adatok);
       res.redirect('/');
     }
